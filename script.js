@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     let currentNumber = 0;
-    let currentLetterIndex = 0;
+    let currentLetterIndex = -1;
 
     function getNextSequenceNumber(min, max) {
         if (currentNumber > max) currentNumber = min;
@@ -99,10 +99,20 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function getNextSequenceLetter(language) {
-        const alphabetLength = (language === 'english') ? 52 : 10; // 52 for English, 10 for Urdu
+
+        let alphabet;
+        if (language === 'englishcaps') {
+            alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        } else if (language === 'englishsmall') {
+            alphabet = 'abcdefghijklmnopqrstuvwxyz';
+        } else if (language === 'urdu') {
+            alphabet = ['ا', 'ب', 'پ', 'ت', 'ٹ', 'ث', 'ج', 'چ', 'ح', 'خ', 'د', 'ڈ', 'ذ', 'ر', 'ڑ', 'ز', 'ژ', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ک', 'گ', 'ل', 'م', 'ن', 'و', 'ہ', 'ھ', 'ء', 'ی', 'ے'];
+        }
+        
+        const alphabetLength = (language === 'englishsmall' || language === 'englishcaps') ? 26 : 40;
         currentLetterIndex++;
         if (currentLetterIndex >= alphabetLength) currentLetterIndex = 0;
-        return getRandomLetter(language);
+        return alphabet[currentLetterIndex];
     }
 
     const backgrounds = [
