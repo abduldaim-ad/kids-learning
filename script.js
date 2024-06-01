@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const minInput = document.getElementById("min");
     const maxInput = document.getElementById("max");
     const sequenceModeCheckbox = document.getElementById("sequence-mode");
+    const imagesModeCheckbox = document.getElementById("images-mode");
 
     function getRandomLetter(language) {
         let alphabet;
@@ -46,12 +47,17 @@ document.addEventListener("DOMContentLoaded", function() {
         const min = parseInt(minInput.value);
         const max = parseInt(maxInput.value);
         const isSequence = sequenceModeCheckbox.checked;
+        const isImages = imagesModeCheckbox.checked;
         const selectedType = document.querySelector('input[name="type"]:checked').value;
         let randomValue;
         let randomNum;
 
+        if(isImages){
         const randomBackground = getRandomBackground();
         numberContainer.style.backgroundImage = `url(${randomBackground})`;
+    }else{
+        numberContainer.style.backgroundImage = `none`;
+    }
 
 
         if (sequenceModeCheckbox.checked) {
