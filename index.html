@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Learning</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="number-container">
+        <p id="random-number">Click me!</p>
+    </div>
+    <div id="controls">
+        <div style="display: flex; flex-direction: column;">
+            <label for="min">Min:</label>
+            <input type="number" id="min" value="1">
+            <label for="max">Max:</label>
+            <input type="number" id="max" value="100">
+            <label>
+                <input type="checkbox" id="sequence-mode"> Sequence
+            </label>
+            <label>
+                <input type="radio" name="type" value="numbers" checked> Numbers
+            </label>
+            <label>
+                <input type="radio" name="type" value="englishsmall"> Small Eng
+            </label>
+            <label>
+                <input type="radio" name="type" value="englishcaps"> Capital Eng
+            </label>
+            <label>
+                <input type="radio" name="type" value="urdu-letters"> Urdu Letters
+            </label>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
