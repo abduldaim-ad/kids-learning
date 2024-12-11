@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function() {
     function getRandomLetter(language) {
         let alphabet;
         if (language === 'englishcaps') {
+            alphabet = {'A:a','B:b';
+        }
+        else if (language === 'englishcaps') {
             alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         } else if (language === 'englishsmall') {
             alphabet = 'abcdefghijklmnopqrstuvwxyz';
