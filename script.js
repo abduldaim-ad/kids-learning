@@ -28,11 +28,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const maxInput = document.getElementById("max");
     const sequenceModeCheckbox = document.getElementById("sequence-mode");
     const imagesModeCheckbox = document.getElementById("images-mode");
+    const justImageModeCheckbox = document.getElementById("just-image-mode");
 
     function getRandomLetter(language) {
         let alphabet;
-        
-        if (language === 'englishcaps') {
+        if (language === 'englishcapssmall') {
+            alphabet = [
+                'Aa', 'Bb', 'Cc', 'Dd', 'Ee', 'Ff', 'Gg', 'Hh', 'Ii', 'Jj', 
+                'Kk', 'Ll', 'Mm', 'Nn', 'Oo', 'Pp', 'Qq', 'Rr', 'Ss', 'Tt', 
+                'Uu', 'Vv', 'Ww', 'Xx', 'Yy', 'Zz'
+              ];              
+        }
+        else if (language === 'englishcaps') {
             alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         } else if (language === 'englishsmall') {
             alphabet = 'abcdefghijklmnopqrstuvwxyz';
@@ -49,11 +56,25 @@ document.addEventListener("DOMContentLoaded", function() {
         const max = parseInt(maxInput.value);
         const isSequence = sequenceModeCheckbox.checked;
         const isImages = imagesModeCheckbox.checked;
+        const isJustImage = justImageModeCheckbox.checked;
         const selectedType = document.querySelector('input[name="type"]:checked').value;
         let randomValue;
         let randomNum;
 
-        if(isImages){
+        numberContainer.style.backgroundSize = "100%"; // Fits the width of the container
+        numberContainer.style.backgroundRepeat = "no-repeat"; // Prevents repeating the image
+
+        if (selectedType !== 'abc') {
+            justImageModeCheckbox.checked=false;
+            numberContainer.style.backgroundImage = `none`;
+        }
+        if(isJustImage){
+            selectedType.value="";
+            isImages.checked=false;
+            isSequence.checked=false;
+            numberContainer.style.backgroundImage = `url('https://res.cloudinary.com/adcloudinary/image/upload/v1733926915/alpha-image_zu2wov.png')`;
+        }
+        else if(isImages){
         const randomBackground = getRandomBackground();
         numberContainer.style.backgroundImage = `url(${randomBackground})`;
     }else{
@@ -75,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (selectedType === 'numbers') {
             randomValue = isSequence ? getNextSequenceNumber(min, max) : getRandomNumber(min, max);
-        } else if (selectedType === 'englishsmall' || selectedType === 'englishcaps' || selectedType === 'urdu-letters') {
+        } else if (selectedType === 'englishcapssmall' || selectedType === 'englishsmall' || selectedType === 'englishcaps' || selectedType === 'urdu-letters') {
             const language = selectedType.split('-')[0];
             randomValue = isSequence ? getNextSequenceLetter(language) : getRandomLetter(language);
         }
@@ -102,7 +123,14 @@ document.addEventListener("DOMContentLoaded", function() {
     function getNextSequenceLetter(language) {
 
         let alphabet;
-        if (language === 'englishcaps') {
+        if (language === 'englishcapssmall') {
+            alphabet = [
+                'Aa', 'Bb', 'Cc', 'Dd', 'Ee', 'Ff', 'Gg', 'Hh', 'Ii', 'Jj', 
+                'Kk', 'Ll', 'Mm', 'Nn', 'Oo', 'Pp', 'Qq', 'Rr', 'Ss', 'Tt', 
+                'Uu', 'Vv', 'Ww', 'Xx', 'Yy', 'Zz'
+              ];              
+        }
+        else if (language === 'englishcaps') {
             alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         } else if (language === 'englishsmall') {
             alphabet = 'abcdefghijklmnopqrstuvwxyz';
